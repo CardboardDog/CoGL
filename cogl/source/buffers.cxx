@@ -1,5 +1,5 @@
 #include"buffers.hxx"
-using namespace tinypipe;
+using namespace cogl;
 VertexAttributeArray::VertexAttributeArray(int length){
     glGenVertexArrays(1,&this->VAO);
     this->addPointer = 0;

@@ -1,6 +1,6 @@
 #include<iostream>
 #include<glad/glad.h>
-namespace tinypipe{
+namespace cogl{
     class VertexAttributeArray{
         public:
         VertexAttributeArray(int length);
