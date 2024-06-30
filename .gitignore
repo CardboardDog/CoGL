@@ -1,0 +1,8 @@
+main.cxx
+makefile
+*.fs
+*.vs
+build
+images/*
+shader_s.h
+stb_image.h
