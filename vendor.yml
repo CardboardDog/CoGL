@@ -1,0 +1,2 @@
+cogl/include/glad/* linguist-vendored
+cogl/source/glad.c -linguist-vendored
