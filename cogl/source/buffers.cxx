@@ -39,3 +39,28 @@ void VertexAttributeArray::disableAttribute(GLuint index){
     glBindVertexArray(this->VAO);
     glDisableVertexAttribArray(index);   
 }
+ArrayBuffer::ArrayBuffer(GLenum type){
+    glGenBuffers(1,&this->VBO);
+    this->bufferType = type;
+}
+void ArrayBuffer::setData(GLsizei size, const GLvoid* data){
+    glBindBuffer(this->bufferType,this->VBO);
+    glBufferData(this->bufferType,size,data,GL_STATIC_DRAW);
+}
+void ArrayBuffer::use(){
+    glBindBuffer(this->bufferType,this->VBO);
+}
+void ArrayBuffer::draw(GLenum geometry, GLsizei amount){
+    glBindBuffer(this->bufferType,this->VBO);
+    switch(this->bufferType){
+        case GL_ELEMENT_ARRAY_BUFFER:
+            glDrawElements(geometry,amount,GL_UNSIGNED_INT,0);
+        case GL_ARRAY_BUFFER:
+            glDrawArrays(geometry,0,amount);
+        default:
+            return;
+    };
+}
+ArrayBuffer::~ArrayBuffer(){
+    glDeleteBuffers(1,&this->VBO);
+}

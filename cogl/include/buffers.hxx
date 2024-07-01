@@ -14,4 +14,15 @@ namespace cogl{
         unsigned int VAO;
         int attributeCount = 0;
     };
+    class ArrayBuffer{
+        public:
+        ArrayBuffer(GLenum type);
+        ~ArrayBuffer();
+        void draw(GLenum geometry, GLsizei amount);
+        void use();
+        void setData(GLsizei size, const void* data);
+        protected:
+        unsigned int VBO;
+        GLenum bufferType;
+    };
 };
