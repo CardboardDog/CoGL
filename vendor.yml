@@ -1,2 +1,3 @@
 cogl/include/glad/* linguist-vendored
 cogl/source/glad.c -linguist-vendored
+sample/stb_image.h -linguist-vendored

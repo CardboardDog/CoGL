@@ -14,6 +14,7 @@ namespace cogl{
         void swapBuffers();
         void setDisplay(int display);
         void setViewport(GLint x, GLint y, GLsizei width, GLsizei height);
+        void set(GLenum setting, bool value);
         void update();
         bool isAlive();
         int width;

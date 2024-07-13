@@ -4,6 +4,5 @@ makefile
 build
 images/*
 shader_s.h
-stb_image.h
 *.o
 cogltest

@@ -20,9 +20,22 @@ void Texture::set(GLenum setting, GLint value){
         glTexParameteri(GL_TEXTURE_2D,setting,value);
     }
 }
+void Texture::set(GLenum setting, bool value){
+    if( setting == GL_UNPACK_ALIGNMENT  ||
+        setting == GL_UNPACK_ROW_LENGTH ||
+        setting == GL_UNPACK_SKIP_PIXELS||
+        setting == GL_UNPACK_SKIP_ROWS ){
+        glPixelStorei(setting,(value)?GL_TRUE:GL_FALSE);
+    }else{
+        glTexParameteri(GL_TEXTURE_2D,setting,(value)?GL_TRUE:GL_FALSE);
+    }
+}
 void Texture::use(int id){
     glBindTexture(GL_TEXTURE_2D,this->texture);
     glActiveTexture(GL_TEXTURE0+id);
+}
+void Texture::use(){
+    glBindTexture(GL_TEXTURE_2D,this->texture);
 }
 Texture::~Texture(){
     glDeleteTextures(1,&this->texture);

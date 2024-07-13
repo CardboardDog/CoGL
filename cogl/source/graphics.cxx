@@ -11,6 +11,8 @@ GraphicsSystem::GraphicsSystem(std::string name){
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window,__resize_callback__);
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+    this->width = COGL_SCREEN_WIDTH;
+    this->height = COGL_SCREEN_HEIGHT;
 }
 GraphicsSystem::~GraphicsSystem(){
     __current_graphics_system__ = NULL;
@@ -33,12 +35,19 @@ void GraphicsSystem::update(){
 void GraphicsSystem::setViewport(GLint x, GLint y, GLsizei width, GLsizei height){
     glViewport(x,y,width,height);
 }
+void GraphicsSystem::set(GLenum setting, bool value){
+    if(value){
+        glEnable(setting);
+    }else{
+        glDisable(setting);
+    }
+}
 bool GraphicsSystem::isAlive(){
     return !glfwWindowShouldClose(this->window);
 }
 void cogl::__resize_callback__(GLFWwindow* rWindow, int width, int height){
     if(__current_graphics_system__){
         __current_graphics_system__->width = width;
-        __current_graphics_system__->width = height;
+        __current_graphics_system__->height = height;
     }
 }
