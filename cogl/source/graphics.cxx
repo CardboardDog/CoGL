@@ -23,7 +23,7 @@ void GraphicsSystem::clear(float r, float g, float b, float a){
     glClearColor(r,g,b,a);
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
 }
-void GraphicsSystem::clear(GLbitfield buffer){
+void GraphicsSystem::clear(cogl::clearBuffer buffer){
     glClear(buffer);
 }
 void GraphicsSystem::swapBuffers(){
@@ -32,10 +32,10 @@ void GraphicsSystem::swapBuffers(){
 void GraphicsSystem::update(){
     glfwPollEvents();
 }
-void GraphicsSystem::setViewport(GLint x, GLint y, GLsizei width, GLsizei height){
+void GraphicsSystem::setViewport(GLint x, GLint y, GLint width, GLint height){
     glViewport(x,y,width,height);
 }
-void GraphicsSystem::set(GLenum setting, bool value){
+void GraphicsSystem::set(cogl::setting setting, bool value){
     if(value){
         glEnable(setting);
     }else{

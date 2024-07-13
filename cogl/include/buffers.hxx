@@ -1,12 +1,13 @@
 #include<iostream>
 #include<glad/glad.h>
+#include<types.hxx>
 namespace cogl{
     class VertexAttributeArray{
         public:
         VertexAttributeArray(int length);
         ~VertexAttributeArray();
         void use();
-        void addAttribute(GLuint index, GLint length, GLenum type, bool normalized);
+        void addAttribute(GLuint index, GLint length, cogl::dataType type, bool normalized);
         void disableAttribute(GLuint index);
         void enableAttribute(GLuint index);
         protected:
@@ -16,13 +17,13 @@ namespace cogl{
     };
     class ArrayBuffer{
         public:
-        ArrayBuffer(GLenum type);
+        ArrayBuffer(cogl::bufferType type);
         ~ArrayBuffer();
-        void draw(GLenum geometry, GLsizei amount);
+        void draw(cogl::geometryType geometry, cogl::dataSize amount);
         void use();
-        void setData(GLsizei size, const void* data);
+        void setData(cogl::dataSize size, cogl::bufferData data);
         protected:
         unsigned int VBO;
-        GLenum bufferType;
+        cogl::bufferType bufferType;
     };
 };

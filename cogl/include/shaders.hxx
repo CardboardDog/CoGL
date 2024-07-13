@@ -1,13 +1,14 @@
 #include<glad/glad.h>
 #include<string>
+#include<types.hxx>
 namespace cogl{
     class Shader{
         public:
-        Shader(GLenum type, std::string code);
+        Shader(cogl::shaderType type, std::string code);
         ~Shader();
         unsigned int shader;
         protected:
-        GLenum type;
+        cogl::shaderType type;
     };
     class ShaderProgram{
         public:

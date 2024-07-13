@@ -5,12 +5,12 @@ Texture::Texture(bool mipmaps){
     glBindTexture(GL_TEXTURE_2D,this->texture);
     this->mipmaps = mipmaps;
 }
-void Texture::load(unsigned char** data, GLenum color, int width, int height){
+void Texture::load(cogl::textureData* data, cogl::colorType color, int width, int height){
     glBindTexture(GL_TEXTURE_2D,this->texture);
     glTexImage2D(GL_TEXTURE_2D,0,color,width,height,0,color,GL_UNSIGNED_BYTE,*data);
     if(this->mipmaps)glGenerateMipmap(GL_TEXTURE_2D);
 }
-void Texture::set(GLenum setting, GLint value){
+void Texture::set(cogl::setting setting, GLint value){
     if( setting == GL_UNPACK_ALIGNMENT  ||
         setting == GL_UNPACK_ROW_LENGTH ||
         setting == GL_UNPACK_SKIP_PIXELS||
@@ -20,7 +20,7 @@ void Texture::set(GLenum setting, GLint value){
         glTexParameteri(GL_TEXTURE_2D,setting,value);
     }
 }
-void Texture::set(GLenum setting, bool value){
+void Texture::set(cogl::setting setting, bool value){
     if( setting == GL_UNPACK_ALIGNMENT  ||
         setting == GL_UNPACK_ROW_LENGTH ||
         setting == GL_UNPACK_SKIP_PIXELS||

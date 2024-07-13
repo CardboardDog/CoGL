@@ -11,7 +11,7 @@ VertexAttributeArray::~VertexAttributeArray(){
 void VertexAttributeArray::use(){
     glBindVertexArray(this->VAO);
 }
-void VertexAttributeArray::addAttribute(GLuint index, GLint length, GLenum type, bool normalized){
+void VertexAttributeArray::addAttribute(GLuint index, GLint length, cogl::dataType type, bool normalized){
     GLsizei size;
     switch(type){
         case GL_FLOAT:
@@ -43,14 +43,14 @@ ArrayBuffer::ArrayBuffer(GLenum type){
     glGenBuffers(1,&this->VBO);
     this->bufferType = type;
 }
-void ArrayBuffer::setData(GLsizei size, const GLvoid* data){
+void ArrayBuffer::setData(cogl::dataSize size, cogl::bufferData data){
     glBindBuffer(this->bufferType,this->VBO);
     glBufferData(this->bufferType,size,data,GL_STATIC_DRAW);
 }
 void ArrayBuffer::use(){
     glBindBuffer(this->bufferType,this->VBO);
 }
-void ArrayBuffer::draw(GLenum geometry, GLsizei amount){
+void ArrayBuffer::draw(cogl::geometryType geometry, cogl::dataSize amount){
     glBindBuffer(this->bufferType,this->VBO);
     switch(this->bufferType){
         case GL_ELEMENT_ARRAY_BUFFER:

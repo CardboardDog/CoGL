@@ -1,4 +1,5 @@
 #include <glad/glad.h>
+#include<types.hxx>
 namespace cogl{
     class Texture{
         public:
@@ -6,9 +7,9 @@ namespace cogl{
         ~Texture();
         void use(int id);
         void use();
-        void set(GLenum setting, GLint value);
-        void set(GLenum setting, bool value);
-        void load(unsigned char** data, GLenum color, int width, int height);
+        void set(cogl::setting setting, GLint value);
+        void set(cogl::setting setting, bool value);
+        void load(unsigned char** data, cogl::colorType color, int width, int height);
         protected:
         unsigned int texture;
         bool mipmaps;
