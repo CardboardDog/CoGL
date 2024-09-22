@@ -45,6 +45,18 @@ void GraphicsSystem::set(cogl::setting setting, bool value){
 bool GraphicsSystem::isAlive(){
     return !glfwWindowShouldClose(this->window);
 }
+void GraphicsSystem::drawActiveBuffer(cogl::geometryType geometry, cogl::dataSize amount, cogl::dataType type){
+    switch(type){
+        case GL_ELEMENT_ARRAY_BUFFER:
+            glDrawElements(geometry,amount,GL_UNSIGNED_INT,0);
+            break;
+        case GL_ARRAY_BUFFER:
+            glDrawArrays(geometry,0,amount);
+            break;
+        default:
+            return;
+    };
+}
 void cogl::__resize_callback__(GLFWwindow* rWindow, int width, int height){
     if(__current_graphics_system__){
         __current_graphics_system__->width = width;

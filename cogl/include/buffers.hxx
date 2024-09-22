@@ -6,7 +6,8 @@ namespace cogl{
         public:
         VertexAttributeArray(int length);
         ~VertexAttributeArray();
-        void use();
+        void bind();
+        void unbind();
         void addAttribute(GLuint index, GLint length, cogl::dataType type, bool normalized);
         void disableAttribute(GLuint index);
         void enableAttribute(GLuint index);
@@ -19,8 +20,8 @@ namespace cogl{
         public:
         ArrayBuffer(cogl::bufferType type);
         ~ArrayBuffer();
-        void draw(cogl::geometryType geometry, cogl::dataSize amount);
-        void use();
+        void bind();
+        void unbind();
         void setData(cogl::dataSize size, cogl::bufferData data);
         protected:
         unsigned int VBO;

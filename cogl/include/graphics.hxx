@@ -16,6 +16,7 @@ namespace cogl{
         void setDisplay(int display);
         void setViewport(GLint x, GLint y, GLint width, GLint height);
         void set(cogl::setting setting, bool value);
+        void drawActiveBuffer(cogl::geometryType geometry, cogl::dataSize amount, cogl::dataType type);
         void update();
         bool isAlive();
         int width;

@@ -8,8 +8,11 @@ VertexAttributeArray::VertexAttributeArray(int length){
 VertexAttributeArray::~VertexAttributeArray(){
     glDeleteVertexArrays(1,&this->VAO);
 }
-void VertexAttributeArray::use(){
+void VertexAttributeArray::bind(){
     glBindVertexArray(this->VAO);
+}
+void VertexAttributeArray::unbind(){
+    glBindVertexArray(0);
 }
 void VertexAttributeArray::addAttribute(GLuint index, GLint length, cogl::dataType type, bool normalized){
     GLsizei size;
@@ -47,21 +50,11 @@ void ArrayBuffer::setData(cogl::dataSize size, cogl::bufferData data){
     glBindBuffer(this->bufferType,this->VBO);
     glBufferData(this->bufferType,size,data,GL_STATIC_DRAW);
 }
-void ArrayBuffer::use(){
+void ArrayBuffer::bind(){
     glBindBuffer(this->bufferType,this->VBO);
 }
-void ArrayBuffer::draw(cogl::geometryType geometry, cogl::dataSize amount){
-    glBindBuffer(this->bufferType,this->VBO);
-    switch(this->bufferType){
-        case GL_ELEMENT_ARRAY_BUFFER:
-            glDrawElements(geometry,amount,GL_UNSIGNED_INT,0);
-            break;
-        case GL_ARRAY_BUFFER:
-            glDrawArrays(geometry,0,amount);
-            break;
-        default:
-            return;
-    };
+void ArrayBuffer::unbind(){
+    glBindBuffer(this->bufferType,0);
 }
 ArrayBuffer::~ArrayBuffer(){
     glDeleteBuffers(1,&this->VBO);

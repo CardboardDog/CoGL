@@ -30,11 +30,11 @@ void Texture::set(cogl::setting setting, bool value){
         glTexParameteri(GL_TEXTURE_2D,setting,(value)?GL_TRUE:GL_FALSE);
     }
 }
-void Texture::use(int id){
+void Texture::bind(int id){
     glBindTexture(GL_TEXTURE_2D,this->texture);
     glActiveTexture(GL_TEXTURE0+id);
 }
-void Texture::use(){
+void Texture::bind(){
     glBindTexture(GL_TEXTURE_2D,this->texture);
 }
 Texture::~Texture(){

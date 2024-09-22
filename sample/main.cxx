@@ -3,7 +3,7 @@
 #include"stb_image.h"
 
 // put image path here!
-const char IMAGE_PATH[] = "/home/username/example.jpg";
+const char IMAGE_PATH[] = "example.jpg";
 
 int main(){
     std::string fragmentCode = "#version 330 core\nout vec4 FragColor;\nin vec3 ourColor;\nin vec2 TexCoord;\nuniform sampler2D texture1;\nvoid main()\n{\n\tFragColor = texture(texture1, TexCoord);\n}";
@@ -32,6 +32,9 @@ int main(){
     VAO->addAttribute(0,3,coglFloat,false); // vertices
     VAO->addAttribute(1,3,coglFloat,false); // colors
     VAO->addAttribute(2,2,coglFloat,false); // UVs
+    VAO->unbind();
+    EBO->unbind();
+    VBO->unbind();
     cogl::Texture* texture = new cogl::Texture(true);
     texture->set(coglTextureRepeatX,coglRepeat); // some settings
     texture->set(coglTextureRepeatY,coglRepeat);
@@ -48,10 +51,14 @@ int main(){
     while(GSYS->isAlive()){ // check if the user has closed the app
         GSYS->setViewport(0,0,GSYS->width,GSYS->height);
         GSYS->clear(1.0f,0.6f,0.2f,0.0);
-        texture->use();
-        shaderProgram->use();
-        VAO->use();
-        EBO->draw(coglTriangles,6); // draws the triangles
+        texture->bind(0);
+        shaderProgram->bind();
+        VAO->bind();
+        EBO->bind();
+        GSYS->drawActiveBuffer(coglTriangles,6,coglElementArray);
+        VAO->unbind();
+        EBO->unbind();
+        VBO->unbind();
         GSYS->swapBuffers();
         GSYS->update();
     }

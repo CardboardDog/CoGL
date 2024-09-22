@@ -16,7 +16,7 @@ namespace cogl{
         ~ShaderProgram();
         void link(Shader* shader);
         bool compile();
-        void use();
+        void bind();
         void set(std::string variable, int value);
         void set(std::string variable, float value);
         void set(std::string variable, bool value);

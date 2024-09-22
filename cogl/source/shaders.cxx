@@ -22,7 +22,7 @@ bool ShaderProgram::compile(){
     glGetProgramiv(this->program,GL_COMPILE_STATUS,&compiled);
     return (bool)compiled;
 }
-void ShaderProgram::use(){
+void ShaderProgram::bind(){
     glUseProgram(this->program);
 }
 void ShaderProgram::set(std::string variable, int value){
