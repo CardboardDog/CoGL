@@ -34,6 +34,9 @@ void ShaderProgram::set(std::string variable, float value){
 void ShaderProgram::set(std::string variable, bool value){
     glUniform1i(glGetUniformLocation(this->program,variable.c_str()),value);
 }
+void ShaderProgram::set(std::string variable, glm::mat4 value){
+    glUniformMatrix4fv(glGetUniformLocation(this->program,variable.c_str()),1,GL_FALSE,glm::value_ptr(value));
+}
 ShaderProgram::~ShaderProgram(){
     glDeleteProgram(this->program);
 }
